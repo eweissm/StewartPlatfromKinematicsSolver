@@ -7,10 +7,16 @@ h = 15  # mm
 
 # target position and orientation
 PlatformTranslation = [0, 0, 90]  # [x_p, y_p, z_p]
-PlatformAngles_deg = [0, 0, 0]  # [psi, theta, phi]
+psi_deg = 0
+theta_deg = 0
+phi_deg = 0
 
 # convert PlatformAngles_deg to radians
-PlatformAngles = PlatformAngles_deg*(np.pi/180)
+psi = psi_deg*(np.pi/180)
+theta = theta_deg*(np.pi/180)
+phi = phi_deg*(np.pi/180)
 
 # calculate full rotation matrix
-BaseToPlatformRotationMatrix = []
+BaseToPlatformRotationMatrix = [[np.cos(psi)*np.cos(theta), -np.sin(psi)*np.cos(phi)+np.cos(psi)*np.sin(theta)*np.sin(phi), np.sin(psi)*np.sin(phi)+np.cos(psi)*np.sin(theta)*np.cos(phi)],
+                                [np.sin(psi)*np.cos(theta), np.cos(psi)*np.cos(phi)+np.sin(psi)*np.sin(theta)*np.sin(phi), -np.cos(psi)*np.sin(phi)+np.sin(psi)*np.sin(theta)*np.cos(phi)],
+                                [-np.cos(theta), np.cos(theta)*np.sin(phi), np.cos(theta)*np.cos(phi)]]
