@@ -7,7 +7,7 @@ h = 15  # mm
 FixedArmLength = 70  # mm
 
 # target position and orientation
-PlatformTranslation = np.transpose(np.array([0, 10, 70]))  # [x_p, y_p, z_p]
+PlatformTranslation = np.transpose(np.array([0, 0, FixedArmLength-20]))  # [x_p, y_p, z_p]
 psi_deg = 0
 theta_deg = 0
 phi_deg = 0
