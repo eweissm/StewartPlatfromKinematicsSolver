@@ -22,11 +22,11 @@ BaseToPlatformRotationMatrix = np.array([[np.cos(psi)*np.cos(theta), -np.sin(psi
                                 [np.sin(psi)*np.cos(theta), np.cos(psi)*np.cos(phi)+np.sin(psi)*np.sin(theta)*np.sin(phi), -np.cos(psi)*np.sin(phi)+np.sin(psi)*np.sin(theta)*np.cos(phi)],
                                 [-np.sin(theta), np.cos(theta)*np.sin(phi), np.cos(theta)*np.cos(phi)]])
 
-l_i = np.zeros((3,6))
+# Calculate the arm lengths
+l_i = np.zeros((6,3))
 for i in range(6):
       b_i = np.transpose(np.array([BaseRadius*np.cos(i*np.pi/3), BaseRadius*np.sin(i*np.pi/3), 0]))  # Base anchor points [x_b, y_b, z_b]
       p_i = np.transpose(np.array([platformRadius*np.cos(i*np.pi/3), platformRadius*np.sin(i*np.pi/3), 0])) # platform anchor points [x_p, y_p, z_p]
-      print(PlatformTranslation + np.matmul(BaseToPlatformRotationMatrix, p_i) - b_i)
-      l_i[:, i] = PlatformTranslation + BaseToPlatformRotationMatrix*p_i - b_i
+      l_i[i] = PlatformTranslation + np.matmul(BaseToPlatformRotationMatrix, p_i) - b_i
 
 print(l_i)
