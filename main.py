@@ -7,7 +7,7 @@ h = 15  # mm
 FixedArmLength = 70  # mm
 
 # target position and orientation
-PlatformTranslation = np.transpose(np.array([0, 0, 50]))  # [x_p, y_p, z_p]
+PlatformTranslation = np.transpose(np.array([0, 10, 70]))  # [x_p, y_p, z_p]
 psi_deg = 0
 theta_deg = 0
 phi_deg = 0
@@ -40,4 +40,5 @@ for i in range(6):
 
       alpha[i] = np.arcsin(g_i/np.sqrt(e_i**2+f_i**2)) - np.arctan2(f_i, e_i)
 
-print(alpha*180/np.pi)
+alpha_deg = np.ceil(alpha*180/np.pi+90)
+print(alpha_deg)
